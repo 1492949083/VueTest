@@ -1,0 +1,26 @@
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+    border-bottom: 1px solid #e6e6e6;
+    position:static;
+    top: 0;
+    z-index: 1030;
+    width: 100%;
+
+}
+
+.navbar_left {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 0.5vh 0.5vw;
+}
+
+.navbar_right {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0.5vh 0.5vw;
+}
