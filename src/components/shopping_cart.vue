@@ -1,32 +1,5 @@
 <script setup>
 import { ref, watch } from 'vue'
-
-let isAll = ref(false);
-
-function isAllChange() {
-    isAll.value = !isAll.value;
-    if (isAll.value == true){
-        for (let i = 0; i < list.value.length; i++){
-            list.value[i].active = true
-        }
-    }
-    if (isAll.value == false){
-        for (let i = 0; i < list.value.length; i++){
-            list.value[i].active = false
-        }
-    }
-}
-
-function totalPrice() {
-    let total = 0;
-    for (let i = 0; i < list.value.length; i++) {
-        total += list.value[i].price * list.value[i].num;
-    }
-    return total;
-}
-
-
-
 //商品
 let list = ref([
     {
@@ -57,6 +30,44 @@ let list = ref([
         active: false,
     },
 ])
+
+let isAll = ref(false);
+
+function isAllChange() {
+    isAll.value = !isAll.value;
+    if (isAll.value == true){
+        for (let i = 0; i < list.value.length; i++){
+            list.value[i].active = true
+        }
+    }
+    if (isAll.value == false){
+        for (let i = 0; i < list.value.length; i++){
+            list.value[i].active = false
+        }
+    }
+}
+
+function totalPrice() {
+    let total = 0;
+    for (let i = 0; i < list.value.length; i++) {
+        total += list.value[i].price * list.value[i].num;
+    }
+    return total;
+}
+
+
+
+watch(() => list.value, (val) => {
+    for (let i = 0; i < val.length; i++) {
+        if (val[i].num > val[i].stock) {
+            val[i].num = val[i].stock;
+        }
+        if (val[i].num < 0) {
+            val[i].num = 0;
+        }
+    }
+}, { deep: true })
+
 </script>
 <template>
     <section class=" container py-5">
@@ -80,9 +91,9 @@ let list = ref([
             <li class="col text-center">{{ item.name }}</li>
             <li class="col text-center">{{ item.price }}</li>
             <li class="col text-center d-flex btn-group-sm" style="height: 100%;">
-                <button class="btn btn-danger " @click="item.num--" :disabled="item.num == 0">-</button>
-                <input type="text" class=" input-group text-center" v-model="item.num">
-                <button class="btn btn-success" @click="item.num++" :disabled="item.num == item.stock">+</button>
+                <button class="btn btn-danger " @click="item.num--" :disabled="item.num <= 0">-</button>
+                <input type="text" class=" input-group text-center" v-model="item.num" style="width: 50px;">
+                <button class="btn btn-success" @click="item.num++" :disabled="item.num >= item.stock">+</button>
             </li>
             <li class="col text-center text-warning">{{ item.price * item.num }}</li>
         </ul>
