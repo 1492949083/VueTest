@@ -11,4 +11,4 @@ const number = ref(0)
         <button @click="number--">-1</button>
     </div>
 </template>
-<style></style>
+<style></style> 
