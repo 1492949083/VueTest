@@ -17,8 +17,8 @@
                     <a href="https:///mc8.me" class="nav-link" target="_blank"><li class=" nav-item">Home</li></a>
                 </ul>
                 <ul class="navbar-nav d-flex flex-row icon">
-                    <li class="nav-item"><a href="#" class="nav-link">Gitee</a></li>
-                    <li class="nav-item px-1"><a href="#" class="nav-link">Github</a></li>
+                    <a href="https://github.com/1492949083" class="nav-link"><li class="nav-item">Gitee</li></a>
+                    <a href="https://gitee.com/ccc007ccc" class="nav-link"><li class="nav-item px-1">Github</li></a>
                 </ul>
             </div>
         </nav>
