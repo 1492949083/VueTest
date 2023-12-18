@@ -1,19 +1,19 @@
 <script setup>
-import navbar from './components/navbar.vue';
-import spider from './components/spider.vue';
-import list from './components/list.vue';
-import add_del from './components/add_del.vue';
-import shopping_cart from './components/shopping_cart.vue';
+import NavBar from './components/NavBar.vue';
+import Spider from './components/Spider.vue';
+import List from './components/List.vue';
+import AddAndDel from './components/AddAndDel.vue';
+import ShoppingCart from './components/ShoppingCart.vue';
 </script>
 
 <template>
-  <navbar />
+  <NavBar />
   <p>{{ msg }}</p>
   <p v-html="my_site"></p>
-  <list />
-  <spider />
-  <add_del />
-  <shopping_cart />
+  <List />
+  <Spider />
+  <AddAndDel />
+  <ShoppingCart />
 </template>
 
 <style lang="scss">
