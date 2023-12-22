@@ -4,6 +4,7 @@ import Spider from './components/Spider.vue';
 import List from './components/List.vue';
 import AddAndDel from './components/AddAndDel.vue';
 import ShoppingCart from './components/ShoppingCart.vue';
+import HoverTest from './components/HoverTest.vue';
 </script>
 
 <template>
@@ -14,6 +15,7 @@ import ShoppingCart from './components/ShoppingCart.vue';
   <Spider />
   <AddAndDel />
   <ShoppingCart />
+  <HoverTest />
 </template>
 
 <style lang="scss">
