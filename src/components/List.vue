@@ -10,7 +10,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="item in list">
+                <tr v-for="item in list" :key="item.id">
                     <td>{{ item.id }}</td>
                     <td>{{ item.username }}</td>
                     <td>{{ item.password }}</td>
@@ -75,6 +75,10 @@ export default {
     },
     methods: {
         list_add() {
+            if (this.id != '' && !Number(this.id)){
+                alert('id请输入数字');
+                return;
+            }
             if (this.list_find('id', this.id) != '') {
                 alert('id已存在');
                 return;
@@ -87,15 +91,77 @@ export default {
                 alert('请填写完整');
                 return;
             }
-            if (this.id == '') {
-                this.id = this.list.length + 1;
+
+            this.id = Number(this.id)
+
+            //添加数据
+            if (this.id == 0) {
+                let newId = 0;
+                //是否有空位
+                let isNull = false;
+                for (let i = 0; i < this.list.length; i++) {
+                    if (this.list[i + 1] == undefined) break;
+                    newId = this.list[i + 1].id;
+                    console.log(i);
+                    if (this.list[i + 1].id - this.list[i].id > 1) {
+                        this.list.push({
+                            id: Number(this.list[i].id) + Number(1),
+                            username: this.username,
+                            password: this.password,
+                        });
+                        isNull = true;
+                        break;
+                    }
+                }
+                console.log(newId);
+                if (newId != 0 && !isNull) {
+                    if (this.list[0].id != 1) {
+                        console.log('newId != 0 && this.list[0] != 1');
+                        this.list.push({
+                            id: 1,
+                            username: this.username,
+                            password: this.password,
+                        });
+                    } else {
+                        console.log('newId != 0');
+                        this.list.push({
+                            id: this.list.length + 1,
+                            username: this.username,
+                            password: this.password,
+                        });
+                    }
+                }
+                if (newId == 0 && this.list.length == 0) {
+                    console.log('newId == 0 && this.list.length == 0');
+                    this.list.push({
+                        id: 1,
+                        username: this.username,
+                        password: this.password,
+                    });
+                } else if (newId == 0 && this.list[0].id != 1) {
+                    console.log('newId == 0 && this.list[0].id != 1');
+                    this.list.push({
+                        id: 1,
+                        username: this.username,
+                        password: this.password,
+                    });
+                } else if (newId == 0 && this.list.length == 1) {
+                    console.log('newId == 0 && this.list.length == 1');
+                    this.list.push({
+                        id: 2,
+                        username: this.username,
+                        password: this.password,
+                    });
+                }
+            } else {
+                this.list.push({
+                    id: this.id,
+                    username: this.username,
+                    password: this.password,
+                });
             }
 
-            this.list.push({
-                id: this.id,
-                username: this.username,
-                password: this.password,
-            });
+
             this.msg = '添加成功';
             this.id = '';
             this.username = '';
@@ -106,6 +172,10 @@ export default {
             setTimeout(() => {
                 this.add_btn_type = 'primary';
             }, 1000);
+            //以id大小排列数组顺序
+            this.list.sort(function (a, b) {
+                return a.id - b.id;
+            });
         },
         list_del(id) {
             //删除id为id的数据
