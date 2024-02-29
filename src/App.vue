@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       msg: 'Hello World!',
-      my_site: '<a href="https://mc8.me">mc8.me</a>'
+      my_site: '<a href="https://me.766677.xyz">主站</a>'
     }
   },
   methods: {
