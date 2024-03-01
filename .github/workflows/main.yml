@@ -11,4 +11,5 @@ jobs:
       with:
         username: '1492949083'
         reponame: 'VueTest'
+        cname: 'vue.766677.xyz'
         token: ${{ secrets.PAT }} # Leave this line unchanged
